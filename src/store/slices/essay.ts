@@ -14,14 +14,18 @@ type EssayState = {
 }
 
 export const sendEssay = createAsyncThunk<
-  Responses.Write.Post | Responses.Write.Update, 
+  Responses.Write.Post | Responses.Write.Update | void, 
   { uuid: string }, 
   { state: RootState }
 >(
   'essay/send',
-  async ({uuid}, {getState}) => {
+  async ({uuid}, {getState, dispatch}) => {
     const { essay } = getState()
-    const res = await (essay.status === 'edit' ? WriteApi.Update({uuid, body: essay.text}) : WriteApi.Post({ uuid, body: essay.text }))
+    if (essay.status === 'sended') {
+      dispatch(changeStatus('edit'))
+      return 
+    }
+    const res = await (essay.status === 'init' ? WriteApi.Post({ uuid, body: essay.text }) : WriteApi.Update({uuid, body: essay.text}))
     if (!res || !res.ok) {
       throw new Error(res.statusText)
     }
@@ -58,10 +62,16 @@ const essaySlice = createSlice({
     },
     editText: (state, action: PayloadAction<string>) => {
       state.text = action.payload
+    },
+    changeStatus: (state, action: PayloadAction<Status>) => {
+      state.status = action.payload
     }
   },
   extraReducers: builder => {
-    builder.addCase(sendEssay.fulfilled, (state, action: PayloadAction<Responses.Write.Post | Responses.Write.Update>) => {
+    builder.addCase(sendEssay.fulfilled, (state, action: PayloadAction<Responses.Write.Post | Responses.Write.Update | void>) => {
+      if (!action.payload) {
+        return
+      }
       state.created_at = action.payload.created_at || ''
       state.text = action.payload.body
       state.status = 'sended'
@@ -70,4 +80,4 @@ const essaySlice = createSlice({
 })
 
 export default essaySlice.reducer
-export const { initText, syncText, editText } = essaySlice.actions
+export const { initText, syncText, editText, changeStatus } = essaySlice.actions

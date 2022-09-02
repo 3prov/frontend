@@ -3,7 +3,7 @@ import { TaskKey } from '../../entities/essay'
 import { descriptionMaker, stringToText } from '../../utils'
 
 type OriginBlockProps = {
-  task: {
+  task?: {
     body: string,
     author: string,
     author_description: string
@@ -16,7 +16,7 @@ const OriginBlock: React.FC<OriginBlockProps> = ({
     body,
     author,
     author_description
-  },
+  } = {body: '', author: '', author_description: ''},
   task_keys
 }) => {
   return (
