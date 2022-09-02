@@ -63,6 +63,7 @@ export default function useFetching<T, U>(endpoint_query: (options: T) => Promis
         return
       }
     }
+    _res()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, dependencies)
 
