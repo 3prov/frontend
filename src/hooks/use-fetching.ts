@@ -15,12 +15,11 @@ export default function useFetching<T, U>(endpoint_query: (options: T) => Promis
   const [state, setState] = useState<useFetchingResult<U>>({
     data: null,
     error: null,
-    isLoading: false
+    isLoading: true
   })
 
   useEffect(() => {
     const _res = async () => {
-      setState((st) => ({...st, isLoading: true}))
       try {
         const _body = await endpoint_query(params)
         if (!_body) {
