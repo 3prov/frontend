@@ -5,9 +5,25 @@
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+html {
+  height: 100%;
+}
 body {
-  padding: 55px 20%;
   background-color: #F5F5F5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+#root {
+  padding: 55px 20%;
+  flex-basis: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  position: relative;
+  height: 100%;
 }
 .p__pretty {
   padding: 10px 0;
@@ -54,12 +70,26 @@ body {
   font-size: 16px;
 }
 .Loader-container {
-  position: absolute;
-  width: 60%;
-  height: calc(100% - 110px);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 40px);
+}
+.Title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.Title-tag {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.Title-specific {
+  font-size: 24px;
 }
 
 .loader {
@@ -73,7 +103,6 @@ body {
   position: relative;
   color: #000;
   transform: translateY(30px);
-  box-sizing: border-box;
   animation: animloader 2s ease infinite;
 }
 .loader::after,
