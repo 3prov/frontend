@@ -67,7 +67,7 @@ const essaySlice = createSlice({
       state.status = action.payload
     }
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(sendEssay.fulfilled, (state, action: PayloadAction<Responses.Write.Post | Responses.Write.Update | void>) => {
       if (!action.payload) {
         return

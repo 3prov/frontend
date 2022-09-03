@@ -1,5 +1,6 @@
 import React from 'react'
 import type { FetchingError } from '../../hooks/use-fetching'
+import Loader from '../ui/Loader'
 
 type BoundaryProps = {
   children: React.ReactNode,
@@ -27,21 +28,21 @@ const Error: React.FC<ErrorProps> = ({error, children}) => {
   )
 }
 
-const Loader: React.FC<LoaderProps> = ({loading, children}) => {
+const LoaderWrapper: React.FC<LoaderProps> = ({loading, children}) => {
   if (!loading) return (<>{children}</>)
-  console.log('provided')
+  
   return (
-    <div className='Loader-container'><span className="loader"/></div>
+    <Loader />
   )
 }
 
 const Boundary: React.FC<BoundaryProps> = ({loading, error, children}) => {
   return (
-    <Loader loading={loading}>
+    <LoaderWrapper loading={loading}>
       <Error error={error}>
         {children}
       </Error>
-    </Loader>
+    </LoaderWrapper>
   )
 }
 
