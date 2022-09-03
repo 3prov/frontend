@@ -23,24 +23,17 @@ const Write: React.FC = () => {
 
   const {data, error, isLoading} = useGetWrite({uuid: id || ''})
 
-  console.log(data, error, isLoading)
-
-  const send = useCallback((_id: string | undefined) => {
-    dispatch(sendEssay({uuid: _id || ''}))
-  }, [dispatch])
-
-  const clickToSend = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    send(id)
-    e.currentTarget.focus()
-  }
-
   useEffect(
     () => {
-      if (!data || !data.essay_already_sent || !data.essay) {
-        return
-      }
-      dispatch(syncText(data.essay))
-    }, [data, dispatch, id]
+      dispatch(syncText(data && data.essay))
+    }, [data, dispatch]
+  )
+
+  const clickToSend = useCallback(
+    (e: React.SyntheticEvent<HTMLButtonElement>) => {
+      dispatch(sendEssay({uuid: id || ''}))
+      e.currentTarget.focus()
+    }, [dispatch, id]
   )
 
   const changeText = useCallback(
@@ -54,17 +47,19 @@ const Write: React.FC = () => {
   })
 
   return (
-    <Boundary loading={isLoading} error={error}>
-      <OriginBlock task={data?.task}/>
-      <EssayBlock essay={{
+    <main>
+      <Boundary loading={isLoading} error={error}>
+        <OriginBlock task={data?.task}/>
+        <EssayBlock essay={{
                     body: text,
                     created_at: created
                   }} 
                   changeText={changeText} 
                   isEdit={status !== 'sended'}
                   click={clickToSend}
-      />
-    </Boundary>
+        />
+      </Boundary>
+    </main>
   )
 }
 
