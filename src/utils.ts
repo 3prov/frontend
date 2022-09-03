@@ -34,11 +34,11 @@ export function stringToText(raw: string, mapper: (t: string, idx?: number) => a
             .map(mapper)
 }
 
-export function descriptionMaker(desc: string, mapper?: (t: string[]) => any) {
+export function descriptionMaker(desc: string, mapper?: (t: [string, string]) => any) {
   const splited = desc.split(' ')
   const fullname = splited.slice(0, 3).join(' ')
   const other = splited.slice(3).join(' ')
-  const result = [`*${fullname} `, other]
+  const result: [string, string] = [`*${fullname} `, other]
 
   if (mapper) {
     return mapper(result)
