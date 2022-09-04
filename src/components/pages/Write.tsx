@@ -50,13 +50,14 @@ const Write: React.FC = () => {
     <main>
       <Boundary loading={isLoading} error={error}>
         <OriginBlock task={data?.task}/>
-        <EssayBlock essay={{
-                    body: text,
-                    created_at: created
-                  }} 
-                  changeText={changeText} 
-                  isEdit={status !== 'sended'}
-                  click={clickToSend}
+        <EssayBlock 
+          essay={{
+            body: text,
+            created_at: created
+          }} 
+          changeText={changeText} 
+          isEdit={status !== 'sended'}
+          click={clickToSend}
         />
       </Boundary>
     </main>
