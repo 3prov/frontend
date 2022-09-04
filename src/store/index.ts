@@ -7,6 +7,7 @@ import notificationSlice from "./slices/notifs";
 const store = configureStore({
   reducer: {
     essay: essaySlice,
+    evaluation: evaluationSlice,
     notifs: notificationSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
