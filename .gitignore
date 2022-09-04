@@ -24,3 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 webpack.config.js
+
+README.md
