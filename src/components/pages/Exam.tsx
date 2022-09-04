@@ -1,11 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGetExam, usePostCriteriaExam, usePostSentenceExam, useUpdateCriteriaExam, useUpdateSentenceExam } from '../../api/exam'
+import { useGetExam } from '../../api/exam'
 import { CriteriaWorker, SentencesWorker } from '../../domain/storage'
-import { MappedCriterion, Sentence } from '../../entities/exam'
-import { Status } from '../../entities/ui'
 import useUnload from '../../hooks/use-unload'
-import { criterionIsDefault, criterionIsEqual } from '../../utils'
 import Boundary from '../wrappers/Boundary'
 import EssayBlock from '../ui/EssayBlock'
 import OriginBlock from '../ui/OriginBlock'
@@ -20,6 +17,17 @@ const evaluationFormSelector = (state: RootState) => ({
   status: state.evaluation.status
 })
 const sentenceSelector = (state: RootState) => state.evaluation.sentences 
+/*
+  TODO:
+    - отправка данных на сервер
+      - пре-валидация
+      - обсудить с бэкендом форму данных, т.к. она мне не нравится
+    - компонент критерий
+      - валидация (см. сообщения себе в ВК)
+    - компонент комментариев к тексту
+      - логика селекшена текста
+      - сами комментарии
+*/
 const Exam: React.FC = () => {
   const { id } = useParams()
   
