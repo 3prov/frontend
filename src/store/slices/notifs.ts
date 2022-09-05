@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Notif, NotificationTypes } from "../../entities/ui";
+import { Notif, NotificationTypes } from "@entities/ui";
 
 type NotifsState = {
   notifs: Notif[]

@@ -10,7 +10,7 @@ const WorkBtn: React.FC<WorkBtnProps> = ({click, currentStatus}) => {
     <button className={`WorkBtn ${currentStatus === 'send' ? 'WorkBtn__send' : 'WorkBtn__edit'}`}
             onClick={click}
     >
-      {`${currentStatus === 'send' ? 'Отправить' : 'Редактировать'}`}
+      {`${currentStatus === 'send' ? 'Отправить' : '✏️ Редактировать'}`}
     </button>
   )
 }

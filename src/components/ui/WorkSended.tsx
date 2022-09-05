@@ -1,5 +1,5 @@
 import React from 'react'
-import { DateString } from '../../entities/common'
+import { DateString } from '@entities/common'
 
 type WorkSendedProps = {
   at: DateString

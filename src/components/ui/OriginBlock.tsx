@@ -1,6 +1,6 @@
 import React from 'react'
-import { TaskKey } from '../../entities/essay'
-import { descriptionMaker, stringToText } from '../../utils'
+import { TaskKey } from '@entities/essay'
+import { descriptionMaker, stringToText } from '@src/utils'
 
 type OriginBlockProps = {
   task?: {

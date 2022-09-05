@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
-import raw_titles from '../../assets/header-names.json'
+import raw_titles from '@assets/header-names.json'
 
 const getTitleFromLocation = (location: string) => {
   const titles = raw_titles as { [key: string]: string }

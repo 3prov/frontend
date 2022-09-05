@@ -1,14 +1,14 @@
 import React, { useCallback, useState } from 'react'
-import { DateString } from '../../entities/common'
-import { Notif, NotificationTypes } from '../../entities/ui'
-import { RootState, useAppDispatch, useTypedSelector } from '../../store'
-import { removeNotif } from '../../store/slices/notifs'
+import { DateString } from '@entities/common'
+import { Notif, NotificationTypes } from '@entities/ui'
+import { RootState, useAppDispatch, useTypedSelector } from '@src/store'
+import { removeNotif } from '@src/store/slices/notifs'
 
-import notifSettings from '../../assets/notifs.json'
+import notifSettings from '@assets/notifs.json'
 
-import notifWarn from '../../assets/notifs-images/warn.svg'
-import notifDone from '../../assets/notifs-images/done.svg'
-import notifError from '../../assets/notifs-images/error.svg'
+import notifWarn from '@assets/notifs-images/warn.svg'
+import notifDone from '@assets/notifs-images/done.svg'
+import notifError from '@assets/notifs-images/error.svg'
 
 const images: {[k: string]: string} = {
   'done': notifDone,

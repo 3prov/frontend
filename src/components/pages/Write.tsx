@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect } from 'react'
 import { shallowEqual } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { useGetWrite } from '../../api/modules/write'
-import { WriteWorker } from '../../domain/storage'
-import useUnload from '../../hooks/use-unload'
-import { RootState, useAppDispatch, useTypedSelector } from '../../store'
-import { editText, initText, sendEssay, syncText } from '../../store/slices/essay'
+import { useGetWrite } from '@api/modules/write'
+import { WriteWorker } from '@domain/storage'
+import useUnload from '@src/hooks/use-unload'
+import { RootState, useAppDispatch, useTypedSelector } from '@src/store'
+import { editText, initText, sendEssay, syncText } from '@src/store/slices/essay'
 import Boundary from '../wrappers/Boundary'
 import EssayBlock from '../ui/EssayBlock'
 import OriginBlock from '../ui/OriginBlock'
@@ -19,14 +19,16 @@ const Write: React.FC = () => {
 
   useEffect(() => {
     dispatch(initText(id))
-  }, [dispatch, id])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const {data, error, isLoading} = useGetWrite({uuid: id || ''})
 
   useEffect(
     () => {
       dispatch(syncText(data && data.essay))
-    }, [data, dispatch]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data]
   )
 
   const clickToSend = useCallback(

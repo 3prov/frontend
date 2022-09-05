@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { CriteriaWorker, SentencesWorker } from '../../domain/storage'
-import useUnload from '../../hooks/use-unload'
+import { CriteriaWorker, SentencesWorker } from '@domain/storage'
+import useUnload from '@src/hooks/use-unload'
 import Boundary from '../wrappers/Boundary'
 import EssayBlock from '../ui/EssayBlock'
 import OriginBlock from '../ui/OriginBlock'
-import { useAppDispatch, useTypedSelector } from '../../store'
-import type { RootState } from '../../store'
+import { useAppDispatch, useTypedSelector } from '@src/store'
+import type { RootState } from '@src/store'
 import { shallowEqual } from 'react-redux'
-import { initEvaluation, syncEvaluation } from '../../store/slices/evaluation'
-import { useGetExam } from '../../api/modules/exam'
+import { initEvaluation, syncEvaluation } from '@src/store/slices/evaluation'
+import { useGetExam } from '@api/modules/exam'
 
 const criteriaSelector = (state: RootState) => state.evaluation.criteria
 const evaluationFormSelector = (state: RootState) => ({
@@ -18,8 +18,9 @@ const evaluationFormSelector = (state: RootState) => ({
 })
 
 const sentenceSelector = (state: RootState) => state.evaluation.sentences 
-/*
-  TODO:
+// TODO NIZHE
+/**
+  @todo
     - отправка данных на сервер
       - пре-валидация
       - обсудить с бэкендом форму данных, т.к. она мне не нравится

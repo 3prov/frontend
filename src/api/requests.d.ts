@@ -1,6 +1,6 @@
-import { ProjectDate } from "../entities/common"
-import { Essay } from "../entities/essay"
-import { MappedCriterion, Sentence, ExamScore } from "../entities/exam"
+import { ProjectDate } from "@entities/common"
+import { Essay } from "@entities/essay"
+import { MappedCriterion, Sentence, ExamScore } from "@entities/exam"
 
 type UUIDRequired = {
   uuid: string

@@ -1,4 +1,4 @@
-import useFetching from "../../hooks/use-fetching"
+import useFetching from "@src/hooks/use-fetching"
 import { createApi } from "../root"
 import Requests from "../requests";
 import Responses from "../responces";
