@@ -1,4 +1,4 @@
-import { createStorageWorker } from "../../packages/storage-worker";
+import { createStorageWorker } from "@packages/storage-worker";
 
 type EssayText = string
 

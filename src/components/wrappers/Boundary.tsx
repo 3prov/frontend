@@ -1,5 +1,5 @@
 import React from 'react'
-import type { FetchingError } from '../../hooks/use-fetching'
+import type { FetchingError } from '@src/hooks/use-fetching'
 import Loader from '../ui/Loader'
 
 type BoundaryProps = {

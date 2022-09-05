@@ -1,7 +1,7 @@
 import { debounce } from 'lodash'
 import React, { useEffect, useRef, useState } from 'react'
-import { Essay } from '../../entities/essay'
-import { stringToText } from '../../utils'
+import { Essay } from '@entities/essay'
+import { stringToText } from '@src/utils'
 import WorkBtn from './WorkBtn'
 import WorkSended from './WorkSended'
 

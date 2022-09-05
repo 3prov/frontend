@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import init from '../../assets/criterion.json'
-import { CriteriaWorker, SentencesWorker } from "../../domain/storage";
-import { DateString } from "../../entities/common";
-import { Examing, Sentence } from "../../entities/exam";
-import { Id, Status } from "../../entities/ui";
-import { criterionIsDefault, criterionIsEqual, mapCriterion } from "../../utils";
+import init from '@assets/criterion.json'
+import { CriteriaWorker, SentencesWorker } from "@domain/storage";
+import { DateString } from "@entities/common";
+import { Examing, Sentence } from "@entities/exam";
+import { Id, Status } from "@entities/ui";
+import { criterionIsDefault, criterionIsEqual, mapCriterion } from "@src/utils";
 
 type EvaluationState = {
   criteria: {

@@ -1,7 +1,7 @@
 import { createApi } from "../root"
 import Requests from "../requests";
 import Responses from "../responces";
-import useFetching from "../../hooks/use-fetching";
+import useFetching from "@src/hooks/use-fetching";
 
 export const GetEssaysByDate = ({year, week}: Requests.Common.GetEssaysByDate = {
   year: new Date().getFullYear(), 

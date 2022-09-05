@@ -1,4 +1,4 @@
-import type { MappedCriterion } from "../../entities/exam";
+import type { MappedCriterion } from "@entities/exam";
 
 export const criterionIsValid = (criterion: MappedCriterion) => {
   Object.keys(criterion.criteria).forEach(key => {

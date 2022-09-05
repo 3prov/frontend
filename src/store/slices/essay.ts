@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "..";
-import { WriteApi } from "../../api";
-import Responses from "../../api/responces";
-import { WriteWorker } from "../../domain/storage";
-import type { DateString } from "../../entities/common";
-import type { Essay } from "../../entities/essay";
-import { Id, NotificationTypes, Status } from "../../entities/ui";
+import { WriteApi } from "@api/index";
+import Responses from "@api/responces";
+import { WriteWorker } from "@domain/storage";
+import type { DateString } from "@entities/common";
+import type { Essay } from "@entities/essay";
+import { Id, NotificationTypes, Status } from "@entities/ui";
 import { addNotif } from "./notifs";
 
 type EssayState = {
