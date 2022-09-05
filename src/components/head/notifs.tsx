@@ -1,11 +1,23 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { DateString } from '../../entities/common'
 import { Notif, NotificationTypes } from '../../entities/ui'
 import { RootState, useAppDispatch, useTypedSelector } from '../../store'
 import { removeNotif } from '../../store/slices/notifs'
-import notifTitles from '../../assets/notif-titles.json'
+
+import notifSettings from '../../assets/notifs.json'
+
+import notifWarn from '../../assets/notifs-images/warn.svg'
+import notifDone from '../../assets/notifs-images/done.svg'
+import notifError from '../../assets/notifs-images/error.svg'
+
+const images: {[k: string]: string} = {
+  'done': notifDone,
+  'err': notifError,
+  'time': notifWarn
+}
 
 type NotifProps = Notif & { close: (id: number) => void }
+type NotifAnims = 'init-notif-anim' | 'close-notif-anim'
 
 const notifDateFormater = (date: DateString) => {
   const settings = Intl.DateTimeFormat('ru', {
@@ -22,28 +34,39 @@ const notifDateFormater = (date: DateString) => {
 const notifFormater = (type: NotificationTypes, payload?: string) => {
   switch(type) {
     case NotificationTypes.TIME:
-      return notifTitles[type].replace('$1', notifDateFormater(payload!))
+      return notifSettings.titles[type].replace('$1', notifDateFormater(payload!))
     default:
-      return notifTitles[type]
+      return notifSettings.titles[type]
   }
 }
 
 const NotifElement: React.FC<NotifProps> = ({ id, type, payload, close }) => {
-  const closeNotif = () => {
-    close(id)
+  const [lastAnim, setLastAnim] = useState<NotifAnims>('init-notif-anim')
+  
+  const currentNotif = 
+    ["DONE", "ERR", "TIME"]
+      .find(el => type.includes(el))
+      ?.toLowerCase() || 'default'
+  
+  const closeNotifAnimStart = () => {
+    setLastAnim('close-notif-anim')
   }
 
+  const closeNotif = (e: React.AnimationEvent<HTMLDivElement>) => {
+    switch (e.animationName as NotifAnims) {
+      case "close-notif-anim":
+        return close(id)
+      default: 
+        return
+      }
+  }
   return (
-    <div className={[
-      "Notif", 
-      `Notif__${
-        ["DONE", "ERR", "TIME"].find(el => type.includes(el))
-                               ?.toLowerCase() 
-        || 'default'
-      }`
-    ].join(' ')}>
+    <div className={["Notif", `Notif__${currentNotif}`, `Notif__${lastAnim}`].join(' ')} 
+         onAnimationEnd={closeNotif}
+    >
+      <img className='Notif-mark' src={images[currentNotif]} alt={"ничо нет :("}/>
       <div className='Notif-text'>{notifFormater(type, payload)}</div>
-      <div className='Notif-close' onClick={closeNotif}></div>
+      <div className='Notif-close' onClick={closeNotifAnimStart} />
     </div>
   )
 }

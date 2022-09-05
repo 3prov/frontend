@@ -50,6 +50,8 @@ main {
 }
 .Essay {
   padding: 60px 0;
+  display: flex;
+  flex-direction: column;
 }
 .Essay-input {
   text-align: justify;
@@ -68,6 +70,7 @@ main {
   text-align: center;
   color: #848484;
   font-size: 16px;
+  margin-bottom: 20px;
 }
 .Loader-container {
   display: flex;
@@ -90,6 +93,93 @@ main {
 }
 .Title-specific {
   font-size: 24px;
+}
+
+.Notifs {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  max-width: 400px;
+  padding: 5px;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+.Notif {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  padding: 10px;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  position: relative;
+  transition: all 500ms ease-out;
+}
+.Notif > * {
+  margin: 0 5px;
+}
+.Notif-mark {
+  height: 28px;
+  width: 28px;
+}
+.Notif-text {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  line-height: 16px;
+  hyphens: auto;
+}
+.Notif__done {
+  background-color: #EDFBD8;
+  color: #2B641E;
+}
+.Notif__default {
+  background-color: #D7F1FD;
+  color: #0C2A75;
+}
+.Notif__time {
+  background-color: #FEF7D1;
+  color: #755118;
+}
+.Notif__err {
+  background-color: #FCE8DB;
+  color: #71192F;
+}
+.Notif-close {
+  cursor: pointer;
+}
+.Notif-close:after{
+  display: inline-block;
+  content: "\00d7"; /* This will render the 'X' */
+  font-size: 28px;
+}
+.Notif__init-notif-anim{
+  animation: init-notif-anim 0.25s ease-in;
+}
+.Notif__close-notif-anim{
+  animation: close-notif-anim 0.25s ease-out;
+}
+.WorkBtn {
+  height: 60px;
+  align-self: flex-end;
+  font-size: 24px;
+  border-radius: 20px;
+  border: 0;
+  line-height: 30px;
+  padding: 15px;
+  height: 100%;
+  cursor: pointer;
+  margin-top: 96px;
+  text-align: center;
+  min-width: 200px;
+}
+.WorkBtn__send {
+  background-color: #7EBA6966;
+}
+.WorkBtn__edit {
+  background-color: #BAA86966;
 }
 
 .loader {
@@ -137,5 +227,21 @@ main {
   100% {
     top: 0;
     color: rgba(0, 0, 0, 0.6);
+  }
+}
+@keyframes init-notif-anim {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes close-notif-anim {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

@@ -5,22 +5,25 @@ export function createApi ({
   params,
   method = 'GET',
   headers = {},
-  data = {}
+  data = {},
+  cache = true
 }: {
   url: string,
   params?: { [param: string]: string },
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
   headers?: Headers | { [header: string]: string },
-  data?: object 
+  data?: object,
+  cache?: boolean
 }) { 
   return fetch(
-    `${BASE_URL}${url}${params ? '?' + new URLSearchParams(params): ''}`, {
+    `${BASE_URL}${url}${params ? '?' + new URLSearchParams(params) : ''}`, {
       method,
       headers: {
         ...defaultHeader,
         ...headers
       },
       body: method === 'GET' ? undefined : JSON.stringify(data),
+      cache: cache ? 'default' : 'no-cache'
     }
   )
 }
