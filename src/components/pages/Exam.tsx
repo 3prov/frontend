@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useGetExam } from '../../api/exam'
 import { CriteriaWorker, SentencesWorker } from '../../domain/storage'
 import useUnload from '../../hooks/use-unload'
 import Boundary from '../wrappers/Boundary'
@@ -10,12 +9,14 @@ import { useAppDispatch, useTypedSelector } from '../../store'
 import type { RootState } from '../../store'
 import { shallowEqual } from 'react-redux'
 import { initEvaluation, syncEvaluation } from '../../store/slices/evaluation'
+import { useGetExam } from '../../api/modules/exam'
 
 const criteriaSelector = (state: RootState) => state.evaluation.criteria
 const evaluationFormSelector = (state: RootState) => ({
   created: state.evaluation.created_at, 
   status: state.evaluation.status
 })
+
 const sentenceSelector = (state: RootState) => state.evaluation.sentences 
 /*
   TODO:

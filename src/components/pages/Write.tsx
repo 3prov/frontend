@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react'
 import { shallowEqual } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { useGetWrite } from '../../api/write'
+import { useGetWrite } from '../../api/modules/write'
 import { WriteWorker } from '../../domain/storage'
 import useUnload from '../../hooks/use-unload'
 import { RootState, useAppDispatch, useTypedSelector } from '../../store'
