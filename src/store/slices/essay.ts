@@ -5,7 +5,8 @@ import Responses from "../../api/responces";
 import { WriteWorker } from "../../domain/storage";
 import type { DateString } from "../../entities/common";
 import type { Essay } from "../../entities/essay";
-import type { Id, Status } from "../../entities/ui";
+import { Id, NotificationTypes, Status } from "../../entities/ui";
+import { addNotif } from "./notifs";
 
 type EssayState = {
   text: string
@@ -27,9 +28,15 @@ export const sendEssay = createAsyncThunk<
     }
     const res = await (essay.status === 'init' ? WriteApi.Post({ uuid, body: essay.text }) : WriteApi.Update({uuid, body: essay.text}))
     if (!res || !res.ok) {
+      dispatch(addNotif({type: NotificationTypes.SEND_ERR}))
       throw new Error(res.statusText)
     }
     const json = await res.json()
+    dispatch(addNotif({
+      type: essay.status === 'init' 
+        ? NotificationTypes.SEND_DONE 
+        : NotificationTypes.EDIT_DONE
+    }))
     return json
   }
 )
