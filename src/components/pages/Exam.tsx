@@ -18,8 +18,9 @@ const evaluationFormSelector = (state: RootState) => ({
 })
 
 const sentenceSelector = (state: RootState) => state.evaluation.sentences 
-/*
-  TODO:
+// TODO NIZHE
+/**
+  @todo
     - отправка данных на сервер
       - пре-валидация
       - обсудить с бэкендом форму данных, т.к. она мне не нравится
