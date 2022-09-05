@@ -1,9 +1,7 @@
 import { WeekFormat } from "../entities/common"
 import { Essay, Task, TaskKey } from "../entities/essay"
 import { Examing, Sentence, ExamScore } from "../entities/exam"
-/**
-  * @todo Common Typing 
-  */
+
 declare namespace Responses {
   namespace Common {
     type GetEssaysByDate = {
