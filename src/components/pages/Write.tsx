@@ -19,14 +19,16 @@ const Write: React.FC = () => {
 
   useEffect(() => {
     dispatch(initText(id))
-  }, [dispatch, id])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const {data, error, isLoading} = useGetWrite({uuid: id || ''})
 
   useEffect(
     () => {
       dispatch(syncText(data && data.essay))
-    }, [data, dispatch]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data]
   )
 
   const clickToSend = useCallback(
