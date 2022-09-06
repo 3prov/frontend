@@ -24,6 +24,8 @@ body {
 main {
   position: relative;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .p__pretty {
   padding: 10px 0;
@@ -77,8 +79,28 @@ main {
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 50%;
+  top: calc(50% - 40px);
   left: calc(50% - 40px);
+}
+.Error {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 7px;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding: 10px 20px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.Error-messages {
+  margin: 5px 0;
+  text-align: center;
+  hyphens: auto;
+}
+.Error-status {
+  font-family: Consolas, monospace;
+  font-weight: 700;
 }
 .Title {
   display: flex;

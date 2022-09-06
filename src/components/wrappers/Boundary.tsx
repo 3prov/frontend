@@ -11,19 +11,31 @@ type LoaderProps = {
   loading: boolean,
   children: React.ReactNode
 }
-type ErrorProps = {
+type FetchingErrorBlockProps = {
   error: FetchingError
   children: React.ReactNode
 }
 
-const Error: React.FC<ErrorProps> = ({error, children}) => {
+const FetchingErrorBlock: React.FC<FetchingErrorBlockProps> = ({error, children}) => {
   if (!error) return (<>{children}</>)
   
   return (
     <div className='Error'>
-      <div>Во время загрузки страницы произошла ошибка:</div>
-      <div><code>{error.message}</code></div>
-      <div>Если это поведение было неожиданным для вас, пожалуйста, сообщите нам об этом в телеграм-бот: <a href={'/'}>ссылка скоро будет......</a></div>
+      <div className="Error-messages">Во время загрузки страницы произошла ошибка:</div>
+      <div className="Error-messages">
+        <span className='Error-status'>
+        { 
+          error.status >= 500 
+          ? "Ошибка на стороне сервера"
+          : error.status >= 400 
+          ? "Не найдено"
+          : "Неизвестная ошибка"
+        }
+        </span>
+      </div>
+      <div className="Error-messages">
+        Если это поведение было неожиданным для вас, пожалуйста, сообщите нам об этом в телеграм-бот: <a href={'/'}>ссылка скоро будет......</a>
+      </div>
     </div>
   )
 }
@@ -39,9 +51,9 @@ const LoaderWrapper: React.FC<LoaderProps> = ({loading, children}) => {
 const Boundary: React.FC<BoundaryProps> = ({loading, error, children}) => {
   return (
     <LoaderWrapper loading={loading}>
-      <Error error={error}>
+      <FetchingErrorBlock error={error}>
         {children}
-      </Error>
+      </FetchingErrorBlock>
     </LoaderWrapper>
   )
 }
