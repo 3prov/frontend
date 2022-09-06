@@ -26,15 +26,15 @@ const FetchingErrorBlock: React.FC<FetchingErrorBlockProps> = ({error, children}
         <span className='Error-status'>
         { 
           error.status >= 500 
-          ? "Ошибка на стороне сервера"
+          ? "Сервер не отвечает."
           : error.status >= 400 
-          ? "Не найдено"
-          : "Неизвестная ошибка"
+          ? "Не найдено."
+          : "Неизвестная ошибка."
         }
         </span>
       </div>
       <div className="Error-messages">
-        Если это поведение было неожиданным для вас, пожалуйста, сообщите нам об этом в телеграм-бот: <a href={'/'}>ссылка скоро будет......</a>
+        Если это поведение было неожиданным для вас, пожалуйста, сообщите нам об этом в наш <a href={'https://t.me/tprov_feedbackbot'} target="_blank" rel="noreferrer">телеграм-бот</a>.
       </div>
     </div>
   )
