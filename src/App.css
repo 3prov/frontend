@@ -67,6 +67,7 @@ main {
   padding: 7px;
   overflow-y: hidden;
   max-height: 1500px;
+  flex-shrink: 0;
 }
 .WorkSended {
   text-align: center;
