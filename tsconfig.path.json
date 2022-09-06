@@ -7,7 +7,8 @@
       "@entities/*": ["src/entities/*"],
       "@domain/*": ["src/domain/*"],
       "@assets/*": ["src/assets/*"],
-      "@packages/*": ["src/packages/*"]
+      "@packages/*": ["src/packages/*"],
+      "@components/*": ["src/components/*"]
     }
   }
 }
